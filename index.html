@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraProfile — AI-Powered LinkedIn Profile Analyzer</title>
+  <meta name="description"
+    content="Upload your LinkedIn profile PDF to receive an instant, AI-powered evaluation of your discoverability, experience quality, and recruiter impact.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Preload critical images to eliminate first-paint blanks -->
+  <link rel="preload" href="hero-bg.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="grid-element-1.jpg" as="image">
+  <link rel="preload" href="grid-element-2.jpg" as="image">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ATMOSPHERIC BACKGROUND EFFECTS
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="atmosphere" aria-hidden="true">
+    <div class="aurora">
+      <div class="aurora__blob aurora__blob--1"></div>
+      <div class="aurora__blob aurora__blob--2"></div>
+      <div class="aurora__blob aurora__blob--3"></div>
+      <div class="aurora__blob aurora__blob--4"></div>
+      <div class="aurora__blob aurora__blob--5"></div>
+    </div>
+    <div class="fog"></div>
+  </div>
+  <canvas class="particles-canvas" id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       A. FLOATING GLASSMORPHISM NAVBAR
+       ═══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <span class="navbar__logo">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"
+        style="color: #a48bff; margin-right: 4px; vertical-align: middle;">
+        <polygon
+          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+        </polygon>
+      </svg>
+      AuraProfile
+    </span>
+    <ul class="navbar__links">
+      <li><a class="navbar__link" href="#features" id="nav-features">Features</a></li>
+      <li><a class="navbar__link" href="#score" id="nav-score">Score</a></li>
+      <li><a class="navbar__link" href="#">How It Works</a></li>
+      <li><a class="navbar__link" href="#">Pricing</a></li>
+    </ul>
+    <button class="navbar__cta" id="nav-analyze">Analyze Profile</button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       B. CINEMATIC HERO SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <!-- Hero image inside parallax wrapper -->
+    <div class="hero__parallax-layer" id="hero-parallax">
+      <img class="hero__background-image" src="hero-bg.jpg"
+        alt="Cinematic landscape with illuminated structures under a starry night sky" fetchpriority="high"
+        decoding="async">
+    </div>
+    <div class="hero__overlay"></div>
+
+    <!-- Shooting Stars -->
+    <div class="hero__stars">
+      <div class="shooting-star shooting-star--1"></div>
+      <div class="shooting-star shooting-star--2"></div>
+      <div class="shooting-star shooting-star--3"></div>
+      <div class="shooting-star shooting-star--4"></div>
+      <div class="shooting-star shooting-star--5"></div>
+    </div>
+
+    <!-- Content overlaid on image -->
+    <div class="hero__content">
+      <div class="hero__badge">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+          </polygon>
+        </svg>
+        AI-POWERED LINKEDIN ANALYSIS
+      </div>
+      <h1 class="hero__headline">Uncover your profile's<br>hidden <span class="text-glow">aura.</span></h1>
+      <p class="hero__subheadline">Upload your LinkedIn profile PDF to receive an instant, AI-powered<br>evaluation of
+        your discoverability, experience quality, and recruiter impact.</p>
+
+      <div class="hero__buttons">
+        <button class="hero__btn-primary" id="hero-cta-primary">
+          Get Started
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px;">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hero__trust-text">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+          style="margin-right: 4px;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0110 0v4"></path>
+        </svg>
+        No signup required &bull; 100% private
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       C. GRID SHOWCASE SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="features" id="features">
+    <span class="features__section-label reveal">Features</span>
+    <h2 class="features__section-title reveal">How we analyze your profile</h2>
+    <div class="features__grid reveal-stagger">
+      <!-- Column 1 -->
+      <article class="features__card" id="feature-keywords">
+        <img class="features__card-image" src="grid-element-1.jpg"
+          alt="Minimalist geometric shapes representing keyword patterns and discoverability signals" width="540"
+          height="338">
+        <div class="features__card-body">
+          <h3 class="features__card-title">Keywords &amp; Discoverability</h3>
+          <p class="features__card-desc">Recruiters search LinkedIn using industry specific keywords. Our AI scans your
+            headline, summary, and experience for term density, relevance, and alignment with target roles &mdash;
+            ensuring
+            you surface in the right searches at the right time.</p>
+        </div>
+      </article>
+      <!-- Column 2 -->
+      <article class="features__card" id="feature-metrics">
+        <img class="features__card-image" src="grid-element-2.jpg"
+          alt="Network graph visualization representing metric-driven achievement analysis" width="540" height="338">
+        <div class="features__card-body">
+          <h3 class="features__card-title">Metric-Driven Achievements</h3>
+          <p class="features__card-desc">Every role you list is evaluated for business impact &mdash; quantifiable
+            results,
+            revenue percentages, team sizes, and project scope. Profiles with measurable achievements consistently
+            outperform narrative only descriptions in recruiter engagement.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       D. FILE UPLOAD SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="upload" id="upload">
+    <div class="upload__container reveal">
+      <h2 class="upload__heading">Upload your <span class="upload__heading-highlight">LinkedIn PDF</span></h2>
+
+      <div class="dropzone" id="dropzone">
+        <input type="file" accept=".pdf" class="dropzone__file-input" id="file-input">
+
+        <!-- Empty State -->
+        <div class="dropzone__empty" id="dropzone-empty">
+          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <h3 class="dropzone__title">Drop your PDF here</h3>
+          <p class="dropzone__subtitle">or click to browse, we accept LinkedIn profile PDFs only</p>
+          <button class="dropzone__select-btn" id="select-btn">Select PDF</button>
+        </div>
+
+        <!-- Loading State -->
+        <div class="dropzone__loading" id="dropzone-loading">
+          <div class="dropzone__spinner"></div>
+          <h3 class="dropzone__loading-title">Analyzing your profile</h3>
+          <p class="dropzone__status" id="loading-status">Parsing PDF structure...</p>
+          <div class="dropzone__progress-container">
+            <div class="dropzone__progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="dropzone__percentage" id="progress-percentage">0%</span>
+        </div>
+
+        <!-- Uploaded State -->
+        <div class="dropzone__uploaded" id="dropzone-uploaded">
+          <svg class="dropzone__file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <p class="dropzone__filename" id="uploaded-filename">resume.pdf - 128 KB</p>
+          <button class="dropzone__remove-btn" id="remove-btn">Remove</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       E. SCORE & RESULTS SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="score-section" id="score">
+    <!-- Main Score Dial -->
+    <div class="score-main reveal">
+      <h2 class="score-main__label">Your Profile Score</h2>
+      <div class="score-dial">
+        <svg class="score-dial__svg" width="200" height="200" viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#6f54ff" />
+              <stop offset="100%" stop-color="#a48bff" />
+            </linearGradient>
+          </defs>
+          <circle class="score-dial__bg" cx="100" cy="100" r="88"></circle>
+          <circle class="score-dial__progress" id="main-dial-progress" cx="100" cy="100" r="88" stroke-dasharray="553"
+            stroke-dashoffset="553"></circle>
+        </svg>
+        <div class="score-dial__text">
+          <div class="score-dial__value" id="main-score-value">0</div>
+          <div class="score-dial__max">out of 100</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-Category Dials -->
+    <div class="sub-dials" id="sub-dials">
+      <div class="sub-dial" data-category="keywords">
+        <div class="sub-dial__text-container">
+          <svg class="sub-dial__svg" width="100" height="100" viewBox="0 0 100 100">
+            <circle class="sub-dial__bg" cx="50" cy="50" r="42"></circle>
+            <circle class="sub-dial__progress" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264">
+            </circle>
+          </svg>
+          <span class="sub-dial__value-overlay">0</span>
+        </div>
+        <p class="sub-dial__name">Keywords</p>
+      </div>
+      <div class="sub-dial" data-category="experience">
+        <div class="sub-dial__text-container">
+          <svg class="sub-dial__svg" width="100" height="100" viewBox="0 0 100 100">
+            <circle class="sub-dial__bg" cx="50" cy="50" r="42"></circle>
+            <circle class="sub-dial__progress" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264">
+            </circle>
+          </svg>
+          <span class="sub-dial__value-overlay">0</span>
+        </div>
+        <p class="sub-dial__name">Experience</p>
+      </div>
+      <div class="sub-dial" data-category="education">
+        <div class="sub-dial__text-container">
+          <svg class="sub-dial__svg" width="100" height="100" viewBox="0 0 100 100">
+            <circle class="sub-dial__bg" cx="50" cy="50" r="42"></circle>
+            <circle class="sub-dial__progress" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264">
+            </circle>
+          </svg>
+          <span class="sub-dial__value-overlay">0</span>
+        </div>
+        <p class="sub-dial__name">Education</p>
+      </div>
+      <div class="sub-dial" data-category="completeness">
+        <div class="sub-dial__text-container">
+          <svg class="sub-dial__svg" width="100" height="100" viewBox="0 0 100 100">
+            <circle class="sub-dial__bg" cx="50" cy="50" r="42"></circle>
+            <circle class="sub-dial__progress" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264">
+            </circle>
+          </svg>
+          <span class="sub-dial__value-overlay">0</span>
+        </div>
+        <p class="sub-dial__name">Completeness</p>
+      </div>
+      <div class="sub-dial" data-category="network">
+        <div class="sub-dial__text-container">
+          <svg class="sub-dial__svg" width="100" height="100" viewBox="0 0 100 100">
+            <circle class="sub-dial__bg" cx="50" cy="50" r="42"></circle>
+            <circle class="sub-dial__progress" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264">
+            </circle>
+          </svg>
+          <span class="sub-dial__value-overlay">0</span>
+        </div>
+        <p class="sub-dial__name">Network</p>
+      </div>
+    </div>
+
+    <!-- Insights Dashboard -->
+    <div class="insights">
+      <h2 class="insights__heading">Recommendations</h2>
+      <div class="insights__list" id="insights-list"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       F. FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer class="footer" id="footer">
+    <p class="footer__line">AuraProfile: AI-powered LinkedIn profile analysis</p>
+    <p class="footer__line">Designed with care. Your data stays private.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
